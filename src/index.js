@@ -3,7 +3,7 @@ const moles = document.querySelectorAll('.mole');
 const startButton = document.querySelector('#start');
 // TODO: Add the missing query selectors:
 const score = document.querySelector('#score'); // Use querySelector() to get the score element
-const timerDisplay = document.querySelector('#timer');; // use querySelector() to get the timer element.
+const timerDisplay = document.querySelector('#start');; // use querySelector() to get the timer element.
 
 let time = 0;
 let timer;
@@ -21,7 +21,7 @@ let difficulty = "hard";
  *
  */
 function randomInteger(min, max) {
-  // return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 /**
@@ -41,9 +41,16 @@ function randomInteger(min, max) {
  */
 function setDelay(difficulty) {
   // TODO: Write your code here.
-  
+if (difficulty ==="easy" ){//> returns 1500){
+  return 1500
 }
-
+if (difficulty ==="normal" ){//> returns 1000){
+  return 1000
+}
+if (difficulty ==="hard" ){//> returns 856 (returns a random number between 600 and 1200){
+  return randomInteger (600,1200)
+}
+}
 /**
  * Chooses a random hole from a list of holes.
  *
@@ -60,9 +67,15 @@ function setDelay(difficulty) {
  */
 function chooseHole(holes) {
   // TODO: Write your code here.
-
+  const index = randomInteger(0, 2);
+  const hole = holes[index];
+  if (hole === lastHole) {
+    return chooseHole(holes);
+  }
+  lastHole = hole;
+  return hole;
 }
-
+let hole = chooseHole(holes);
 /**
 *
 * Calls the showUp function if time > 0 and stops the game if time = 0.

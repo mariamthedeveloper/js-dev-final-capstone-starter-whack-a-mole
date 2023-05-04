@@ -3,7 +3,7 @@ const moles = document.querySelectorAll('.mole');
 const startButton = document.querySelector('#start');
 // TODO: Add the missing query selectors:
 const score = document.querySelector('#score'); // Use querySelector() to get the score element
-const timerDisplay = document.querySelector('#start');; // use querySelector() to get the timer element.
+const timerDisplay = document.querySelector('#timer');; // use querySelector() to get the timer element.
 
 let time = 0;
 let timer;
@@ -67,7 +67,7 @@ if (difficulty ==="hard" ){//> returns 856 (returns a random number between 600 
  */
 function chooseHole(holes) {
   // TODO: Write your code here.
-  const index = randomInteger(0, 2);
+  const index = randomInteger(0, 8);
   const hole = holes[index];
   if (hole === lastHole) {
     return chooseHole(holes);
@@ -166,7 +166,8 @@ function toggleVisibility(hole){
 */
 function updateScore() {
   // TODO: Write your code here
-
+  points++;
+  score.textContent = points ;
   return points;
 }
 
@@ -179,8 +180,8 @@ function updateScore() {
 */
 function clearScore() {
   // TODO: Write your code here
-  // points = 0;
-  // score.textContent = points;
+ points = 0;
+  score.textContent = points;
   return points;
 }
 
@@ -192,9 +193,13 @@ function clearScore() {
 function updateTimer() {
   // TODO: Write your code here.
   // hint: this code is provided to you in the instructions.
-  
+  if (time > 0){
+    time -= 1;
+    timerDisplay.textContent = time;
+  }
   return time;
 }
+
 
 /**
 *
@@ -204,8 +209,8 @@ function updateTimer() {
 */
 function startTimer() {
   // TODO: Write your code here
-  // timer = setInterval(updateTimer, 1000);
-  return timer;
+   timer = setInterval(updateTimer, 1000);
+ return timer;
 }
 
 /**
@@ -218,8 +223,9 @@ function startTimer() {
 */
 function whack(event) {
   // TODO: Write your code here.
-  // call updateScore()
-  return points;
+  
+   updateScore()
+  return points; 
 }
 
 /**
@@ -229,9 +235,15 @@ function whack(event) {
 */
 function setEventListeners(){
   // TODO: Write your code here
-
+  
+  moles.forEach(
+    mole => mole.addEventListener('click', whack)
+  );
   return moles;
 }
+
+//setEventListeners()
+
 
 /**
 *
@@ -262,14 +274,19 @@ function stopGame(){
 * is clicked.
 *
 */
+
 function startGame(){
-  //setDuration(10);
-  //showUp();
+  //setEventListeners()
+  setDuration(10);
+  showUp();
+  startTimer();
+
+  
   return "game started";
 }
 
-startButton.addEventListener("click", startGame);
 
+startButton.addEventListener("click", startGame);
 
 // Please do not modify the code below.
 // Used for testing purposes.

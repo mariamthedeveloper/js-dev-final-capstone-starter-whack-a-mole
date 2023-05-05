@@ -223,16 +223,16 @@ function startTimer() {
 */
 function whack(event) {
   // TODO: Write your code here.
-  
-   updateScore()
-  return points; 
-}
+    updateScore()
+     return points; 
+  }
 
 /**
 *
 * Adds the 'click' event listeners to the moles. See the instructions
 * for an example on how to set event listeners using a for loop.
 */
+
 function setEventListeners(){
   // TODO: Write your code here
   
@@ -242,7 +242,7 @@ function setEventListeners(){
   return moles;
 }
 
-//setEventListeners()
+
 
 
 /**
@@ -276,15 +276,16 @@ function stopGame(){
 */
 
 function startGame(){
-  //setEventListeners()
+  setEventListeners()
   setDuration(10);
   showUp();
   startTimer();
-
+  clearScore()
   
   return "game started";
-}
 
+
+}
 
 startButton.addEventListener("click", startGame);
 

@@ -4,6 +4,7 @@ const startButton = document.querySelector('#start');
 // TODO: Add the missing query selectors:
 const score = document.querySelector('#score'); // Use querySelector() to get the score element
 const timerDisplay = document.querySelector('#timer');; // use querySelector() to get the timer element.
+const song = new Audio("https://github.com/Thinkful-Ed/js-dev-final-capstone-starter/blob/main/assets/molesong.mp3?raw=true");
 
 let time = 0;
 let timer;
@@ -11,6 +12,14 @@ let lastHole = 0;
 let points = 0;
 let difficulty = "hard";
 
+function play(audio){
+  audio.play()
+}
+
+function stop(audio){
+  audio.pause()
+  audio.currentTime = 0
+}
 /**
  * Generates a random integer within a range.
  *
@@ -39,6 +48,7 @@ function randomInteger(min, max) {
  * setDelay("hard") //> returns 856 (returns a random number between 600 and 1200).
  *
  */
+
 function setDelay(difficulty) {
   // TODO: Write your code here.
 if (difficulty ==="easy" ){//> returns 1500){
@@ -265,6 +275,7 @@ function setDuration(duration) {
 function stopGame(){
   // stopAudio(song);  //optional
   clearInterval(timer);
+  stop(song)
   return "game stopped";
 }
 
@@ -281,7 +292,7 @@ function startGame(){
   showUp();
   startTimer();
   clearScore()
-  
+  play(song)
   return "game started";
 
 

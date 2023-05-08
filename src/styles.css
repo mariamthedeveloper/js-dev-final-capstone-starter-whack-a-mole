@@ -40,8 +40,8 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
-  /*cursor: url('./assets/mallet.png'), pointer;*/
-}
+ cursor: url("https://github.com/Thinkful-Ed/js-dev-final-capstone-starter/blob/main/assets/mallet.png?raw=true"), auto
+ }
 
 .hole {
   flex: 1 0 33.33%;
